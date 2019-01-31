@@ -25,12 +25,12 @@ public class Obstacles {
             */
     public static Obstacle[] GNOME = new Obstacle[] {
             new Obstacle(null, Locations.GNOME.LOG_BALANCE, "Log balance"),
-            new Obstacle(null, Locations.GNOME.OBSTACLE_NET1, "Obstacle net"),
-            new Obstacle(null, Locations.GNOME.TREE_BRANCH1, "Tree branch"),
-            new Obstacle(null, Locations.GNOME.BALANCING_ROPE, "Balancing rope"),
-            new Obstacle(null, Locations.GNOME.TREE_BRANCH2, "Tree branch"),
-            new Obstacle(null, Locations.GNOME.OBSTACLE_NET2, "Obstacle net"),
-            new Obstacle(null, Locations.GNOME.OBSTACLE_PIPE, "Obstacle pipe")
+            new Obstacle(Locations.GNOME.OBSTACLE_NET1, null, "Obstacle net"),
+            new Obstacle(Locations.GNOME.TREE_BRANCH1, null, "Tree branch"),
+            new Obstacle(Locations.GNOME.BALANCING_ROPE, null, "Balancing rope"),
+            new Obstacle(Locations.GNOME.TREE_BRANCH2, null, "Tree branch"),
+            new Obstacle(Locations.GNOME.OBSTACLE_NET2, null, "Obstacle net"),
+            new Obstacle(Locations.GNOME.OBSTACLE_PIPE, null, "Obstacle pipe")
     };
 
     /*

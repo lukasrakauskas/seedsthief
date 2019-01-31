@@ -4,8 +4,12 @@ import SeedsTheif.data.Locations;
 import SeedsTheif.data.Obstacle;
 import SeedsTheif.data.Obstacles;
 import SeedsTheif.data.Store;
+import org.rspeer.runetek.adapter.component.Item;
 import org.rspeer.runetek.adapter.scene.SceneObject;
 import org.rspeer.runetek.api.commons.Time;
+import org.rspeer.runetek.api.component.Bank;
+import org.rspeer.runetek.api.component.Dialog;
+import org.rspeer.runetek.api.component.tab.Inventory;
 import org.rspeer.runetek.api.component.tab.Skill;
 import org.rspeer.runetek.api.component.tab.Skills;
 import org.rspeer.runetek.api.movement.Movement;
@@ -14,15 +18,19 @@ import org.rspeer.runetek.api.movement.position.Position;
 import org.rspeer.runetek.api.scene.Players;
 import org.rspeer.runetek.api.scene.SceneObjects;
 import org.rspeer.script.task.Task;
+import org.rspeer.ui.Log;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class Varrock extends Task {
 
+    private boolean hasTeletab = true;
+
     @Override
     public boolean validate() {
-        return Skills.getCurrentLevel(Skill.AGILITY) >= 30;
+        return Skills.getCurrentLevel(Skill.AGILITY) < 50;
     }
 
     @Override
@@ -49,7 +57,30 @@ public class Varrock extends Task {
 
     private int getToCourse() {
         if (!Locations.VARROCK.COURSE.contains(Players.getLocal())) {
-            Movement.walkTo(Locations.VARROCK.ROUGH_WALL);
+            if (hasTeletab) {
+                Item teletab = Inventory.getFirst("Varrock teleport");
+                if (teletab != null) {
+                    teletab.interact("Break");
+                    Time.sleep(1000);
+                    hasTeletab = false;
+                } else {
+                    if (Bank.isOpen()) {
+                        if (Bank.contains("Varrock teleport")) {
+                            Bank.withdraw("Varrock teleport", 1);
+                            Time.sleepUntil(() -> Inventory.contains("Varrock teleport"), 500, 2000);
+                        } else {
+                            Log.severe("Has no teletab");
+                            hasTeletab = false;
+                            return 1000;
+                        }
+                    } else {
+                        Bank.open();
+                        Time.sleep(2000, 3000);
+                    }
+                }
+            } else {
+                Movement.walkTo(Locations.VARROCK.ROUGH_WALL);
+            }
         }
         return 1000;
     }

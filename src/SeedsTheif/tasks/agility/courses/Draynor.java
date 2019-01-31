@@ -25,7 +25,7 @@ import java.util.function.Predicate;
 public class Draynor extends Task {
     @Override
     public boolean validate() {
-        return Skills.getCurrentLevel(Skill.AGILITY) >= 10;
+        return Skills.getCurrentLevel(Skill.AGILITY) < 30;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class Draynor extends Task {
             if (Dialog.isOpen()) {
                 Dialog.process(option -> option.contains("Draynor"));
             } else {
-                Predicate<Item> gloryPredicate = item -> item.getName().contains("glory") && Arrays.asList(item.getActions()).contains("Rub");
+                Predicate<Item> gloryPredicate = item -> item.getName().contains("glory(");
                 Item glory = Inventory.getFirst(gloryPredicate);
                 if (glory != null) {
                     glory.interact("Rub");

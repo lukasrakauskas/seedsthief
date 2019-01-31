@@ -26,11 +26,16 @@ public class GetMembership extends Task {
         Store.setAction("Get membership");
 
         if (Dialog.isOpen()) {
-            if (BOND_REDEEMED.getText().contains("14 days")) {
-                Game.logout();
-                return 3000;
+            if (Dialog.canContinue()) {
+                if (BOND_REDEEMED.getText().contains("14 days")) {
+                    Game.logout();
+                    return 3000;
+                } else {
+                    Dialog.processContinue();
+                }
+            } else {
+                Time.sleepUntil(Dialog::canContinue, 500, 10000);
             }
-            if (Dialog.canContinue()) Dialog.processContinue();
             return 3000;
         }
 

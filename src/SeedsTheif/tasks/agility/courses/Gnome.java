@@ -25,7 +25,7 @@ import java.util.function.Predicate;
 public class Gnome extends Task {
     @Override
     public boolean validate() {
-        return Skills.getCurrentLevel(Skill.AGILITY) >= 1;
+        return Skills.getCurrentLevel(Skill.AGILITY) < 10;
     }
 
     @Override
@@ -71,7 +71,7 @@ public class Gnome extends Task {
                 Time.sleepUntil(() -> !Players.getLocal().isAnimating(), 500, 5000);
             }
 
-            Predicate<Item> passageNecklacePredicate = item -> item.getName().contains("passage") && Arrays.asList(item.getActions()).contains("Rub");
+            Predicate<Item> passageNecklacePredicate = item -> item.getName().contains("passage(");
             Item passageNecklace = Inventory.getFirst(passageNecklacePredicate);
             if (passageNecklace != null) {
                 passageNecklace.interact("Rub");

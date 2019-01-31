@@ -27,12 +27,18 @@ public class Locations {
         public static final Area COURSE = Area.rectangular(2469, 3440, 2490, 3414);
         public static final Area OUTPOST_TO_COURSE = Area.rectangular(2429, 3338, 2491, 3441);
         public static final Position LOG_BALANCE = new Position(2474, 3436, 0);
-        public static final Position OBSTACLE_NET1 = new Position(2474, 3429, 0);
-        public static final Position TREE_BRANCH1 = new Position(2473, 3423, 1);
-        public static final Position BALANCING_ROPE = new Position(2473, 3420, 2);
-        public static final Position TREE_BRANCH2 = new Position(2483, 3420, 2);
-        public static final Position OBSTACLE_NET2 = new Position(2487, 3420, 0);
-        public static final Position OBSTACLE_PIPE = new Position(2487, 3428, 0);
+        public static final Area OBSTACLE_NET1 =  Area.rectangular(2470, 3429, 2477, 3425, 0);
+//        public static final Position OBSTACLE_NET1 = new Position(2474, 3429, 0);
+        public static final Area TREE_BRANCH1 = Area.rectangular(2471, 3424, 2476, 3422, 1);
+//        public static final Position TREE_BRANCH1 = new Position(2473, 3423, 1);
+        public static final Area BALANCING_ROPE = Area.rectangular(2472, 3421, 2477, 3418, 2);
+//        public static final Position BALANCING_ROPE = new Position(2473, 3420, 2);
+        public static final Area TREE_BRANCH2 = Area.rectangular(2483, 3421, 2488, 3418, 2);
+//        public static final Position TREE_BRANCH2 = new Position(2483, 3420, 2);
+        public static final Area OBSTACLE_NET2 = Area.rectangular(2490, 3418, 2481, 3426, 0);
+//        public static final Position OBSTACLE_NET2 = new Position(2487, 3420, 0);
+        public static final Area OBSTACLE_PIPE = Area.rectangular(2490, 3427, 2481, 3431, 0);
+//        public static final Position OBSTACLE_PIPE = new Position(2487, 3428, 0);
 
     }
     public static class DRAYNOR {

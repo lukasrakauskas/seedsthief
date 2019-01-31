@@ -21,9 +21,9 @@ import org.rspeer.script.task.Task;
 public class TrainAgility extends Task {
 
     private final Task[] tasks = {
-            new Varrock(),
+            new Gnome(),
             new Draynor(),
-            new Gnome()
+            new Varrock()
     };
 
     @Override

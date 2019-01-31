@@ -1,6 +1,7 @@
 package SeedsTheif.tasks.starting;
 
 import SeedsTheif.data.Store;
+import SeedsTheif.utils.Utils;
 import org.rspeer.runetek.api.Game;
 import org.rspeer.runetek.api.Worlds;
 import org.rspeer.runetek.api.commons.Time;
@@ -11,7 +12,7 @@ import org.rspeer.script.task.Task;
 public class HopToMembers extends Task {
     @Override
     public boolean validate() {
-        if (Game.isLoggedIn()) {
+        if (Game.isLoggedIn() && Utils.hasMembership()) {
             RSWorld current = Worlds.get(Game.getClient().getCurrentWorld());
             if (current != null) {
                 return !current.isMembers();
